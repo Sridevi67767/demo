@@ -1,0 +1,504 @@
+/* ============================================================
+   FILE: src/App.css
+   PURPOSE: All styles for the entire app.
+   
+   Design direction: "Natural / Organic"
+   - Warm cream background, deep forest greens, soft shadows
+   - Font: Fraunces (display) + DM Sans (body)
+   - Feels like a calm, satisfying productivity app
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── CSS Variables (design tokens) ── */
+:root {
+  --green-dark:   #1a3d2b;
+  --green-mid:    #2d6a4f;
+  --green-light:  #52b788;
+  --green-pale:   #d8f3dc;
+  --green-faint:  #f0faf2;
+  --cream:        #faf7f2;
+  --cream-dark:   #f0ebe0;
+  --text-primary: #1a2e1e;
+  --text-muted:   #5a7060;
+  --white:        #ffffff;
+  --shadow-sm:    0 2px 8px rgba(26,61,43,0.08);
+  --shadow-md:    0 4px 20px rgba(26,61,43,0.12);
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────
+   LOADING SCREEN
+───────────────────────────────────────── */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 12px;
+  color: var(--text-muted);
+}
+
+.loading-spinner {
+  font-size: 48px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.15); opacity: 0.7; }
+}
+
+/* ─────────────────────────────────────────
+   LOGIN PAGE
+───────────────────────────────────────── */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background:
+    radial-gradient(ellipse at 20% 50%, #c7f0d8 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, #a8d8b9 0%, transparent 50%),
+    var(--cream);
+}
+
+.login-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--green-pale);
+}
+
+.login-icon {
+  font-size: 56px;
+  margin-bottom: 1rem;
+  display: block;
+  animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-5deg); }
+  50%       { transform: rotate(5deg); }
+}
+
+.login-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: var(--green-dark);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 1rem;
+}
+
+.google-btn:hover  { background: var(--green-mid); transform: translateY(-1px); }
+.google-btn:active { transform: translateY(0); }
+
+.login-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+.navbar {
+  background: var(--green-dark);
+  color: var(--white);
+  padding: 0.85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--green-light);
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  color: var(--green-pale);
+}
+
+.logout-btn {
+  padding: 0.35rem 0.9rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover { background: rgba(255,255,255,0.1); }
+
+/* ─────────────────────────────────────────
+   MAIN CONTENT
+───────────────────────────────────────── */
+.main-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.page-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.new-habit-btn {
+  padding: 0.6rem 1.3rem;
+  background: var(--green-mid);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.new-habit-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+/* ─────────────────────────────────────────
+   ADD HABIT FORM
+───────────────────────────────────────── */
+.add-habit-form {
+  background: var(--white);
+  border: 1px solid var(--green-pale);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--green-dark);
+  margin-bottom: 1rem;
+}
+
+.emoji-picker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.emoji-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 1.3rem;
+  border: 2px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji-btn:hover   { border-color: var(--green-light); transform: scale(1.1); }
+.emoji-btn.selected { border-color: var(--green-mid); background: var(--green-faint); }
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.habit-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  background: var(--cream);
+  color: var(--text-primary);
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.habit-input:focus  { border-color: var(--green-light); background: var(--white); }
+.habit-input::placeholder { color: var(--text-muted); }
+
+.add-btn {
+  padding: 0.7rem 1.2rem;
+  background: var(--green-mid);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.add-btn:hover    { background: var(--green-dark); }
+.add-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ─────────────────────────────────────────
+   HABITS GRID
+───────────────────────────────────────── */
+.habits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ─────────────────────────────────────────
+   HABIT CARD
+───────────────────────────────────────── */
+.habit-card {
+  background: var(--white);
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* When today is checked off, card gets a green tint */
+.habit-card.done {
+  border-color: var(--green-light);
+  background: linear-gradient(135deg, var(--white), var(--green-faint));
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.habit-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.habit-emoji { font-size: 1.5rem; }
+
+.habit-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.delete-btn {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: var(--cream-dark);
+  border-radius: 50%;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover { background: #ffdddd; color: #c0392b; }
+
+/* ─── Streak Stats ─── */
+.streak-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--green-faint);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  flex: 1;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-mid);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  text-align: center;
+}
+
+/* ─── Heatmap ─── */
+.heatmap-wrap {
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+/* Override react-calendar-heatmap colors */
+.react-calendar-heatmap .color-empty  { fill: var(--cream-dark); }
+.react-calendar-heatmap .color-filled { fill: var(--green-light); }
+.react-calendar-heatmap text          { font-size: 7px; fill: var(--text-muted); }
+
+.loading-text {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 1rem 0;
+}
+
+/* ─── Check-in Button ─── */
+.checkin-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--green-light);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--green-mid);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.checkin-btn:hover   { background: var(--green-faint); }
+.checkin-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Green filled state when done */
+.checkin-btn.checked {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+  color: var(--white);
+}
+
+.checkin-btn.checked:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+/* ─────────────────────────────────────────
+   EMPTY STATE
+───────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted);
+}
+
+.empty-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .navbar          { padding: 0.75rem 1rem; }
+  .user-name       { display: none; }
+  .main-content    { padding: 1.25rem 1rem 3rem; }
+  .page-title      { font-size: 1.4rem; }
+  .habits-grid     { grid-template-columns: 1fr; }
+  .form-row        { flex-direction: column; }
+  .login-card      { padding: 2rem 1.5rem; }
+}
